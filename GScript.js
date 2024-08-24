@@ -92,6 +92,7 @@ document.addEventListener('keyup', function(event) {
 // Функция для обработки нажатия на интерактивные стрелки
 function handleInteractiveArrowPress() {
     document.querySelectorAll('.arrow').forEach(function(arrow) {
+        // Обработчик для мыши
         arrow.addEventListener('mousedown', function(event) {
             event.preventDefault(); // Предотвращаем действия по умолчанию, чтобы избежать выделения текста
             switch (event.target.classList[1]) {
@@ -112,6 +113,7 @@ function handleInteractiveArrowPress() {
             }
         });
 
+        // Обработчик для отпускания мыши
         arrow.addEventListener('mouseup', function(event) {
             switch (event.target.classList[1]) {
                 case 'upArrow':
@@ -131,8 +133,49 @@ function handleInteractiveArrowPress() {
             }
         });
 
-        // Добавляем обработчик события 'mouseout' для сброса состояния клавиши при выходе курсора из области элемента
+        // Обработчик для выхода мыши из элемента
         arrow.addEventListener('mouseout', function(event) {
+            switch (event.target.classList[1]) {
+                case 'upArrow':
+                    upArrowActive = false;
+                    break;
+                case 'downArrow':
+                    downArrowActive = false;
+                    break;
+                case 'leftArrow':
+                    leftArrowActive = false;
+                    break;
+                case 'rightArrow':
+                    rightArrowActive = false;
+                    break;
+                default:
+                    break;
+            }
+        });
+
+        // Обработчик для касания на мобильных устройствах
+        arrow.addEventListener('touchstart', function(event) {
+            event.preventDefault(); // Предотвращаем действия по умолчанию
+            switch (event.target.classList[1]) {
+                case 'upArrow':
+                    upArrowActive = true;
+                    break;
+                case 'downArrow':
+                    downArrowActive = true;
+                    break;
+                case 'leftArrow':
+                    leftArrowActive = true;
+                    break;
+                case 'rightArrow':
+                    rightArrowActive = true;
+                    break;
+                default:
+                    break;
+            }
+        });
+
+        // Обработчик для окончания касания на мобильных устройствах
+        arrow.addEventListener('touchend', function(event) {
             switch (event.target.classList[1]) {
                 case 'upArrow':
                     upArrowActive = false;
@@ -153,9 +196,6 @@ function handleInteractiveArrowPress() {
     });
 }
 
-
-
-/////?????
 
 
 // Функция для перемещения игрока
