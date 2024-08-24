@@ -9,7 +9,7 @@ exitBtn.addEventListener('click', function() {
 });
 
 playBtn.addEventListener('click', function() {
-    window.location.href = 'game.html';
+    window.location.href = 'index.html';
 });
 
 aboutBtn.addEventListener('click', function() {
